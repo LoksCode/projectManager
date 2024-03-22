@@ -56,6 +56,7 @@ function App() {
         projectsList={projects}
         onAddNewProject={handleAddNewProject}
         onSelect={selectProject}
+        selectedProject={projectID}
       />
       {content}
     </main>
