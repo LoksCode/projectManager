@@ -57,7 +57,10 @@ export default function AddingModal({ onAdd, onCloseModal }) {
         <label className='text-sm font-bold uppercase text-stone-500'>
           Description
         </label>
-        <textarea id='description-input' className={classes} />
+        <textarea
+          id='description-input'
+          className={classes + 'whitespace-pre-wrap'}
+        />
         <label className='text-sm font-bold uppercase text-stone-500'>
           Due Date
         </label>
