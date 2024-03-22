@@ -17,7 +17,7 @@ export default function Sidebar({ projectsList, onAddNewProject, onSelect }) {
                 className='w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800'
                 onClick={() => onSelect(project.id)}
                 id={project.id}>
-                {project.title} {project.id}
+                {project.title}
               </button>
             </li>
           );

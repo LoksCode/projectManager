@@ -7,17 +7,22 @@ import ProjectPreview from './components/ProjectPreview';
 function App() {
   const [projectID, setProjectID] = useState(undefined);
   const [projects, setProjects] = useState([]);
-
   let selectedProject = projects.find((project) => project.id === projectID);
 
   function selectProject(id) {
     setProjectID(id);
-    console.log(id);
   }
 
   function addToList(inputObject) {
     setProjects((prevData) => {
       return [...prevData, inputObject];
+    });
+  }
+
+  function deleteProject(id) {
+    setProjectID(undefined);
+    setProjects((prevData) => {
+      return prevData.filter((project) => project.id !== id);
     });
   }
 
@@ -31,7 +36,12 @@ function App() {
   } else if (projectID === null) {
     content = <AddingModal onAdd={addToList} onCloseModal={closeModal} />;
   } else if (projectID) {
-    content = <ProjectPreview selectedProject={selectedProject} />;
+    content = (
+      <ProjectPreview
+        selectedProject={selectedProject}
+        onDelete={deleteProject}
+      />
+    );
   }
 
   function handleAddNewProject() {
