@@ -12,8 +12,12 @@ export default function Sidebar({ projectsList, onAddNewProject }) {
       <ul className='mt-4'>
         {projectsList.map((project) => {
           return (
-            <li key={Math.random()}>
-              <button>project</button>
+            <li key={project.id}>
+              <button
+                className='w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800'
+                id={project.id}>
+                {project.title} {project.id}
+              </button>
             </li>
           );
         })}

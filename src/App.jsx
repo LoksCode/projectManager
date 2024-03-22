@@ -4,30 +4,35 @@ import AddingModal from './components/AddingModal';
 import NewProject from './components/NewProject';
 
 function App() {
-  const [projectsList, setProjectList] = useState({
-    selectedProjectId: undefined,
-    projects: [],
-  });
+  const [projectID, setProjectID] = useState(undefined);
+  const [projects, setProjects] = useState([]);
+
+  function addToList(inputObject) {
+    setProjects((prevData) => {
+      return [...prevData, inputObject];
+    });
+  }
+
+  function closeModal() {
+    setProjectID(undefined);
+  }
 
   let content;
-  if (projectsList.selectedProjectId === undefined) {
+  if (projectID === undefined) {
     content = <NewProject onAddNewProject={handleAddNewProject} />;
-  } else if (projectsList.selectedProjectId === null) {
-    content = <AddingModal />;
+  } else if (projectID === null) {
+    content = <AddingModal onAdd={addToList} onCloseModal={closeModal} />;
   }
 
   function handleAddNewProject() {
-    setProjectList((prevValue) => {
-      return { ...projectsList, selectedProjectId: null };
+    setProjectID((prevValue) => {
+      return null;
     });
   }
 
   return (
     <main className='h-screen my-8 flex gap-8'>
-      <Sidebar
-        projectsList={projectsList.projects}
-        onAddNewProject={handleAddNewProject}
-      />
+      <Sidebar projectsList={projects} onAddNewProject={handleAddNewProject} />
       {content}
     </main>
   );
